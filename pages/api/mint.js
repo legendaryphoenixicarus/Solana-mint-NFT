@@ -1,10 +1,14 @@
 var web3 = require('@solana/web3.js');
 var splToken = require('@solana/spl-token');
+require('dotenv').config();
 
-(async () => {
+export default async function handler(req, res) {
+  const body = req.body;
+  console.log('body: ', body);
+
   // Connect to cluster
   var connection = new web3.Connection(
-    "YOUR_QUICKNODE_URL_HERE",
+    process.env.QUICK_NODE_URL,
     'confirmed',
   );
 
@@ -76,4 +80,4 @@ var splToken = require('@solana/spl-token');
     {commitment: 'confirmed'},
   );
   console.log('SIGNATURE', signature);
-})();
+}

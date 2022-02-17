@@ -14,7 +14,11 @@ export default async function handler(req, res) {
     return res.json({ data: 'Uri not found' });
   }
 
-  await mintNft(
+  if (!body.symbol) {
+    return res.json({ data: 'Symbol not found' });
+  }
+
+  const response = await mintNft(
     {
       from: `${process.env.FROM_KEY}`,
       fromPrivateKey:
@@ -22,9 +26,7 @@ export default async function handler(req, res) {
       to: `${process.env.TO_KEY}`,
       metadata: new SolanaNftMetadata(`${body.name}`, `${body.symbol}`, `${body.image}`, 0),
     }
-  ).then(() => {
-    return res.json({ data: `Successfully minted the NFT on ${process.env.TO_KEY}`});
-  });
+  );
 
-  res.json({ data: 'test'});
+  res.json({ data: response });
 }
