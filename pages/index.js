@@ -7,14 +7,6 @@ export default function Home() {
     // Stop the form from submitting and refreshing the page.
     event.preventDefault();
 
-    // // Get data from the form.
-    // const data = {
-    //   metadata: event.target.metadata.value,
-    // };
-
-    // const JSONdata = JSON.stringify(data.metadata);
-    // alert (typeof data.metadata);
-
     // Send the form data to our API and get a response.
     const response = await fetch('/api/mint_new', {
       // Body of the request is the JSON data we created above.
