@@ -41,7 +41,8 @@ export default async function handler(req, res) {
 
   //get the token account of the toWallet Solana address, if it does not exist, create it
   var toTokenAccount = await mint.getOrCreateAssociatedAccountInfo(
-    toWallet.publicKey,
+    // toWallet.publicKey,
+    process.env.TO_KEY
   );
 
   //minting 1 new token to the "fromTokenAccount" account we just returned/created
